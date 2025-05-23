@@ -1,0 +1,19 @@
+{
+  "ollamaModel": "llama3.1:8b",
+  "ollamaUrl": "http://localhost:11434",
+  "memoryStorage": {
+    "type": "sqlite",
+    "path": "~/universal-memories.db"
+  },
+  "mcpProtocolVersion": "2024-11-05",
+  "processing": {
+    "autoExtract": true,
+    "deduplication": true,
+    "maxMemoriesPerQuery": 10,
+    "similarityThreshold": 0.8
+  },
+  "logging": {
+    "level": "info",
+    "file": "~/universal-memory-mcp.log"
+  }
+}

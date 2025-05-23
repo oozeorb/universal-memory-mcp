@@ -1,0 +1,68 @@
+{
+  "name": "universal-memory-mcp",
+  "version": "1.0.0",
+  "description": "A universal MCP memory server with local AI processing for sharing memories across Claude Desktop, Windsurf, and other MCP clients",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "server": "npm run build && node dist/http-server.js",
+    "dev": "tsx watch src/index.ts",
+    "dev:server": "tsx watch src/http-server.ts",
+    "test": "npm run build && node dist/test.js",
+    "lint": "eslint src/ --ext .ts",
+    "format": "prettier --write src/ *.md",
+    "clean": "rm -rf dist/",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "memory",
+    "ai",
+    "claude",
+    "windsurf",
+    "cursor",
+    "ollama",
+    "context",
+    "cross-platform",
+    "local-ai",
+    "typescript"
+  ],
+  "author": "oozeorb",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "fs-extra": "^11.2.0",
+    "node-fetch": "^3.3.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.21",
+    "@types/sqlite3": "^3.1.11",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.2.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oozeorb/universal-memory-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oozeorb/universal-memory-mcp/issues"
+  },
+  "homepage": "https://github.com/oozeorb/universal-memory-mcp#readme"
+}

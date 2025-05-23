@@ -1,0 +1,53 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - memory-bridge
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  universal-memory-mcp:
+    build: .
+    container_name: universal-memory-mcp
+    ports:
+      - "3020:3020"
+    volumes:
+      # Persist database
+      - ./data:/app/data
+      # Optional: mount config for customization
+      - ./config:/app/config:ro
+      # Mount git directory for repository auto-tagging
+      - ./.git:/app/.git:ro
+    environment:
+      - NODE_ENV=production
+      - OLLAMA_URL=http://ollama:11434
+      - OLLAMA_MODEL=llama3.1:8b
+      - MEMORY_STORAGE_PATH=/app/data/universal-memories.db
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3020/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - memory-bridge
+
+networks:
+  memory-bridge:
+    driver: bridge
+
+volumes:
+  ollama_data:

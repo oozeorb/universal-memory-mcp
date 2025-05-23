@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "universal-memory": {
+      "command": "node",
+      "args": ["/path/to/universal-memory-mcp/dist/mcp-http-client.js"],
+      "env": {
+        "HTTP_SERVER_URL": "http://localhost:3020"
+      }
+    }
+  }
+}
